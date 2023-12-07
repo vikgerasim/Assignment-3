@@ -35,10 +35,8 @@ body {
     DONE- first-level headings are size 48px, centered vertically and horizontally in the available space.
     DONE- 2nd-level headings have a font size of 36px, and 12px of space below.
     DONE - any element with the .large-text class has a font size of 24px.
-    
     DONE - any element with the .fake-button class will have a background colour of mustard yellow (see colour palette above), be center aligned,
-                    with a line-height of 3 and a solid black border that is 1px wide.
-                    
+                    with a line-height of 3 and a solid black border that is 1px wide.             
     DONE - all anchors will have the underline removed and be black in colour. all anchors in the main and footer sections will be underlined in their hover-state.
     DONE - the hover-state of .fake-button and .blue-hover elements will:
     DONE    - add an underline, 
@@ -119,6 +117,7 @@ footer {
     height: 60px;
     font-weight: 200;
     margin-top: 50px;
+    line-height: 30px;
 }
 
 footer p {
@@ -146,7 +145,7 @@ main img {
     line-height: 36px;
 }
 
-p {
+.index p {
     margin-bottom: 12px;
 }
 
