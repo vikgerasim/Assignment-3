@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 const RATE = [35, 20];
 const SELECTIONS = ["full", "half"];
 const DAYS = ["monday", "tuesday", "wednesday", "thursday", "friday"];
@@ -17,16 +19,16 @@ const calculate = () => {
 
 // Iterates through the day button elements and sets up their on-click function 
 for (const day of DAYS) {
-    let element = document.getElementById(day);
+    const element = document.getElementById(day);
     element.addEventListener("click", function() {
         if (!element.classList.contains("clicked")) {
             element.classList.add("clicked");
             day_counter++;
             calculate();
-        };
+        }
     });
     element_list.push(element);
-};
+}
 
 
 // Sets up the clear button on-click function
@@ -34,20 +36,20 @@ document.getElementById("clear-button").addEventListener("click", function() {
     document.getElementById("calculated-cost").innerHTML = day_counter = 0;
     for (const element of element_list) {
         element.classList.remove("clicked");
-    };
+    }
 });
 
 
-// Iterates throught the half and full button elements and sets up their in-click function
+// Iterates throught the half and full button elements and sets up their on-click function
 for (let index = 0; index < 2; index++) {
-    let element = document.getElementById(SELECTIONS[index]);
+    const element = document.getElementById(SELECTIONS[index]);
     element.addEventListener("click", function() {
         if (!element.classList.contains("clicked")) {
             element.classList.add("clicked");
-            selection_list[Number(!index)].classList.remove("clicked");
+            selection_list[(index + 1) % 2].classList.remove("clicked");
             daily_rate = RATE[index];
             calculate();
-        };
+        }
     });
     selection_list.push(element);
-};
+}
