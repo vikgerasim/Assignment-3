@@ -1,40 +1,53 @@
-/********* create variables *********/
-// useful variables might be: the cost per day, the number of days selected, and elements on the screen that will be clicked or will need to be modified. 
-// Do any of these variables need to be initialized when the page is loaded? 
-// When do they need to be reset or updated?
+const RATE = [35, 20];
+const SELECTIONS = ["full", "half"];
+const DAYS = ["monday", "tuesday", "wednesday", "thursday", "friday"];
 
 
+let day_counter = 0;
+let daily_rate = RATE[0];
+let element_list = [];
+let selection_list = [];
 
 
-/********* colour change days of week *********/
-// when the day buttons are clicked, we will apply the "clicked" class to that element, and update any other relevant variables. Then, we can recalculate the total cost.
-// added challenge: don't update the dayCounter if the same day is clicked more than once. hint: .classList.contains() might be helpful here!
+// Displays the total calculated cost
+const calculate = () => {
+    document.getElementById("calculated-cost").innerHTML = day_counter * daily_rate;
+};
 
 
+// Iterates through the day button elements and sets up their on-click function 
+for (const day of DAYS) {
+    let element = document.getElementById(day);
+    element.addEventListener("click", function() {
+        if (!element.classList.contains("clicked")) {
+            element.classList.add("clicked");
+            day_counter++;
+            calculate();
+        };
+    });
+    element_list.push(element);
+};
 
 
-
-/********* clear days *********/
-// when the clear-button is clicked, the "clicked" class is removed from all days, any other relevant variables are reset, and the calculated cost is set to 0.
-
-
-
-
-
-
-/********* change rate *********/
-// when the half-day button is clicked, set the daily rate to $20, add the "clicked" class to the "half" element, remove it from the "full" element, and recalculate the total cost.
+// Sets up the clear button on-click function
+document.getElementById("clear-button").addEventListener("click", function() {
+    document.getElementById("calculated-cost").innerHTML = day_counter = 0;
+    for (const element of element_list) {
+        element.classList.remove("clicked");
+    };
+});
 
 
-
-
-// when the full-day button is clicked, the daily rate is set back to $35, the clicked class is added to "full" and removed from "half", and the total cost is recalculated.
-
-
-
-
-
-/********* calculate *********/
-// when a calculation is needed, set the innerHTML of the calculated-cost element to the appropriate value
-
-
+// Iterates throught the half and full button elements and sets up their in-click function
+for (let index = 0; index < 2; index++) {
+    let element = document.getElementById(SELECTIONS[index]);
+    element.addEventListener("click", function() {
+        if (!element.classList.contains("clicked")) {
+            element.classList.add("clicked");
+            selection_list[Number(!index)].classList.remove("clicked");
+            daily_rate = RATE[index];
+            calculate();
+        };
+    });
+    selection_list.push(element);
+};
